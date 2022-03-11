@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class UiManager : Singleton<UiManager>
 {
+    #region Paneşls
     [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject inGamePanel;
     public GameObject endGamePanel;
     public GameObject gameOverPanel;
-
+    #endregion
     #region Private Fields
     private GameObject _currentPanel;
     #endregion
@@ -18,7 +19,7 @@ public class UiManager : Singleton<UiManager>
     private void Start()
     {
         _currentPanel = mainMenuPanel;
-        
+
     }
 
     #region Button Functions

@@ -16,11 +16,15 @@ public class PlayerAnimationController : Singleton<PlayerAnimationController>
 
     public void GameOverAnimation(){
         animator.SetBool("Run", false);
-        animator.SetBool("GameOver", true);
+        animator.SetBool("Sad", true);
     }
 
      public void FinishAnimation(){
         animator.SetBool("Run", false);
-        animator.SetBool("Finish", true);
+        animator.SetBool("Push", true);
+    }
+
+    public void EndFinishAnimation(){
+        animator.SetBool("Push",false);
     }
 }
