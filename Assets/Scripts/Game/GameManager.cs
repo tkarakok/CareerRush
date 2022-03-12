@@ -79,6 +79,15 @@ public class GameManager : Singleton<GameManager>
         moneys.Add(money.gameObject);
     }
 
+    public void CollisionMinusMoneyFunction()
+    {
+        MinusMoney(10);
+        moneyCounter--;
+        moneys[moneys.Count - 1].transform.SetParent(null);
+        moneys[moneys.Count - 1].SetActive(false);
+        moneys.Remove(moneys[moneys.Count - 1]);
+    }
+
     /// <summary>
     /// move to new horizontal movement with delay
     /// </summary>
@@ -129,7 +138,6 @@ public class GameManager : Singleton<GameManager>
     /// <param name="amount"> amount = gate's amount</param>
     void InstantiateNewMoney(int amount)
     {
-        AddMoney(amount);
         for (int i = 0; i < CalculateMoney(amount); i++)
         {
             CollisionMoneyFunction(ObjectPoolManager.Instance.GetMoney().transform);
@@ -143,14 +151,9 @@ public class GameManager : Singleton<GameManager>
     /// <param name="amount"></param>
     void DestroyMoney(int amount)
     {
-        MinusMoney(amount);
         for (int i = 0; i < CalculateMoney(amount); i++)
         {
-            moneyCounter--;
-            moneys[moneys.Count - 1].transform.SetParent(null);
-            moneys[moneys.Count - 1].SetActive(false);
-            moneys.Remove(moneys[moneys.Count - 1]);
-            Debug.Log(moneyCounter);
+            CollisionMinusMoneyFunction();
         }
     }
 

@@ -16,6 +16,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     public MoneyPool moneyPools;
 
     private void Awake() {
+        
         moneyPools.moneyPoolQueue = new Queue<GameObject>();
 
         for (int i = 0; i < moneyPools.poolSize; i++)
@@ -27,6 +28,10 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         }
     }
 
+/// <summary>
+/// we get a gameobject in queue for collision of gate
+/// </summary>
+/// <returns></returns>
     public GameObject GetMoney(){
         GameObject money = moneyPools.moneyPoolQueue.Dequeue();
         money.transform.SetParent(null);

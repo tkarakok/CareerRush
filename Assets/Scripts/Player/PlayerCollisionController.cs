@@ -10,6 +10,12 @@ public class PlayerCollisionController : MonoBehaviour
             other.tag = "Untagged";
             GameManager.Instance.CollisionMoneyFunction(other.transform);
         }
+        else if (other.CompareTag("ObstacleMoney"))
+        {
+            other.tag = "Untagged";
+            other.gameObject.SetActive(false);
+            GameManager.Instance.CollisionMinusMoneyFunction();
+        }
         else if (other.CompareTag("Gate"))
         {
             other.tag = "Untagged";
