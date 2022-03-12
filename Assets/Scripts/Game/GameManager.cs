@@ -134,6 +134,7 @@ public class GameManager : Singleton<GameManager>
         {
 
             CollisionMoneyFunction(ObjectPoolManager.Instance.GetMoney().transform);
+            Debug.Log(GameManager.Instance.MoneyCounter);
         }
     }
 
