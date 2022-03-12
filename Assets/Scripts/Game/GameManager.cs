@@ -45,6 +45,7 @@ public class GameManager : Singleton<GameManager>
     public void AddMoney(int amount)
     {
         amountOfMoney += amount;
+        EventManager.Instance.MoneyEvent();
     }
 
     /// <summary>
@@ -53,7 +54,13 @@ public class GameManager : Singleton<GameManager>
     /// <param name="amount"> minus value </param>
     public void MinusMoney(int amount)
     {
+
         amountOfMoney -= amount;
+        if (amountOfMoney < 0)
+        {
+            EventManager.Instance.GameOverEvent();
+        }
+        EventManager.Instance.MoneyEvent();
     }
 
     /// <summary>

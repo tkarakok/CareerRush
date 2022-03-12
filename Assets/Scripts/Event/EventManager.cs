@@ -10,6 +10,8 @@ public class EventManager : Singleton<EventManager>
     public StateActions EndGameEvent;
     public StateActions GameOverEvent;
 
+    public delegate void Money();
+    public Money MoneyEvent;
 
     private void Start() {
         MainMenuEvent += SubsribeAllEvent;
@@ -20,14 +22,21 @@ public class EventManager : Singleton<EventManager>
         #region In Game
         InGameEvent += PlayerAnimationController.Instance.RunAnimation;    
         InGameEvent += () => StateManager.Instance.State = State.InGame;
+        InGameEvent += UiManager.Instance.InGameTextUpdate;
         #endregion
 
         #region Game Over
-            
+        GameOverEvent += PlayerAnimationController.Instance.GameOverAnimation;
+        GameOverEvent += () => StateManager.Instance.State = State.GameOver;
+        GameOverEvent += UiManager.Instance.GameOver;
         #endregion
 
         #region EndGame
             
+        #endregion
+
+        #region Money Event
+        MoneyEvent += UiManager.Instance.InGameTextUpdate;
         #endregion
 
     }

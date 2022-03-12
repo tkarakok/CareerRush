@@ -5,7 +5,8 @@ using UnityEngine;
 public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
     [System.Serializable]
-    public struct MoneyPool{
+    public struct MoneyPool
+    {
         public GameObject moneyPrefab;
         public int poolSize;
         public Queue<GameObject> moneyPoolQueue;
@@ -15,8 +16,9 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
     public MoneyPool moneyPools;
 
-    private void Awake() {
-        
+    private void Awake()
+    {
+
         moneyPools.moneyPoolQueue = new Queue<GameObject>();
 
         for (int i = 0; i < moneyPools.poolSize; i++)
@@ -28,11 +30,12 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         }
     }
 
-/// <summary>
-/// we get a gameobject in queue for collision of gate
-/// </summary>
-/// <returns></returns>
-    public GameObject GetMoney(){
+    /// <summary>
+    /// we get a gameobject in queue for collision of gate
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetMoney()
+    {
         GameObject money = moneyPools.moneyPoolQueue.Dequeue();
         money.transform.SetParent(null);
         money.SetActive(true);
