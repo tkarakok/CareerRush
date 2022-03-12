@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     #region Private Fields
     private int moneyCounter; // total money size
     private int amountOfMoney; // total money amount
+    
     #endregion
 
     #region EnCapsulation
