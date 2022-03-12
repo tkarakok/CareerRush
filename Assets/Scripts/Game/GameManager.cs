@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
- public enum GateOperation {
-        plus,
-        minus,
-        random
-    }
+public enum GateOperation
+{
+    plus,
+    minus,
+    random
+}
 
 public class GameManager : Singleton<GameManager>
 {
@@ -108,8 +109,9 @@ public class GameManager : Singleton<GameManager>
     /// if random value <=5 minus else plus 
     /// </summary>
     /// <returns> gate operation for random gate collision</returns>
-    public GateOperation RandomGateOperation(){
-        int randomOperation = Random.Range(0,10);
+    public GateOperation RandomGateOperation()
+    {
+        int randomOperation = Random.Range(0, 10);
         if (randomOperation <= 5)
         {
             return GateOperation.minus;
@@ -118,19 +120,34 @@ public class GameManager : Singleton<GameManager>
         {
             return GateOperation.minus;
         }
-        
+
     }
 
-/// <summary>
-/// calling collision gates
-/// </summary>
-/// <param name="gateOperation"> gate's value like plus minus random</param>
-/// <param name="amount"> gate amount value </param>
-    public void GateMoneyFunction(GateOperation gateOperation, int amount){
+    /// <summary>
+    /// this func calling in gate money func for plus
+    /// </summary>
+    /// <param name="amount"> amount = gate's amount</param>
+    void InstantiateNewMoney(int amount)
+    {
+        AddMoney(amount);
+        for (int i = 0; i < CalculateMoney(amount); i++)
+        {
+
+            CollisionMoneyFunction(ObjectPoolManager.Instance.GetMoney().transform);
+        }
+    }
+
+    /// <summary>
+    /// calling collision gates
+    /// </summary>
+    /// <param name="gateOperation"> gate's value like plus minus random</param>
+    /// <param name="amount"> gate amount value </param>
+    public void GateMoneyFunction(GateOperation gateOperation, int amount)
+    {
         switch (gateOperation)
         {
             case GateOperation.plus:
-                AddMoney(amount);
+                InstantiateNewMoney(amount);
                 break;
             case GateOperation.minus:
                 MinusMoney(amount);
@@ -138,8 +155,9 @@ public class GameManager : Singleton<GameManager>
             case GateOperation.random:
                 if (RandomGateOperation() == GateOperation.plus)
                 {
-                    AddMoney(amount);
-                }else
+                    InstantiateNewMoney(amount);
+                }
+                else
                 {
                     MinusMoney(amount);
                 }

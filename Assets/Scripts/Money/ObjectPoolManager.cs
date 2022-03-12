@@ -26,4 +26,12 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             moneyPools.moneyPoolQueue.Enqueue(money);
         }
     }
+
+    public GameObject GetMoney(){
+        GameObject money = moneyPools.moneyPoolQueue.Dequeue();
+        money.transform.SetParent(null);
+        money.SetActive(true);
+        moneyPools.moneyPoolQueue.Enqueue(money);
+        return money;
+    }
 }

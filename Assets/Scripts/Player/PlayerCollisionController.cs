@@ -10,5 +10,11 @@ public class PlayerCollisionController : MonoBehaviour
             other.tag = "Untagged";
             GameManager.Instance.CollisionMoneyFunction(other.transform);
         }
+        else if (other.CompareTag("Plus"))
+        {
+            other.tag = "Untagged";
+            GateController gateController = other.GetComponent<GateController>();
+            GameManager.Instance.GateMoneyFunction(gateController.gateOperation,gateController.amount);
+        }
     }
 }
