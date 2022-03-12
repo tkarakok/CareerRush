@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
         if (StateManager.Instance.State == State.InGame)
         {
 
-            Vector3 targetPosition = _target.position + _offsetZ;
+            Vector3 targetPosition = new Vector3(transform.position.x,_target.position.y,_target.position.z) + _offsetZ;
             transform.position = targetPosition;
         }
 
