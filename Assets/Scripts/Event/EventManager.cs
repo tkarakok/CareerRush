@@ -10,6 +10,7 @@ public class EventManager : Singleton<EventManager>
     public StateActions EndGameEvent;
     public StateActions GameOverEvent;
 
+
     private void Start() {
         MainMenuEvent += SubsribeAllEvent;
         MainMenuEvent();
@@ -28,5 +29,6 @@ public class EventManager : Singleton<EventManager>
         #region EndGame
             
         #endregion
+
     }
 }
