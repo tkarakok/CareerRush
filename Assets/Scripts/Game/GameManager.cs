@@ -37,10 +37,6 @@ public class GameManager : Singleton<GameManager>
 
     #region Money Functions
 
-    public void InstantiateMoneyPrefab(int value){
-        
-    }
-
     /// <summary>
     /// we adding new amount if we collise in game money
     /// </summary>
