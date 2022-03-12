@@ -352,9 +352,10 @@ GameObject:
   - component: {fileID: 7220243607689511684}
   - component: {fileID: 7220243607689511685}
   - component: {fileID: 7220243607689511686}
+  - component: {fileID: 3152564327750711181}
   m_Layer: 0
   m_Name: Left
-  m_TagString: Plus
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -437,6 +438,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3152564327750711181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220243607689511680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00dfd7743223c245becf346654750fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gateOperation: 0
+  amount: 0
 --- !u!1 &7220243607932062231
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,9 +689,10 @@ GameObject:
   - component: {fileID: 7220243609338005302}
   - component: {fileID: 7220243609338005303}
   - component: {fileID: 7220243609338005296}
+  - component: {fileID: 7363649904311244325}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Minus
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -759,6 +775,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &7363649904311244325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220243609338005298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00dfd7743223c245becf346654750fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gateOperation: 0
+  amount: 0
 --- !u!1 &7220243609503315148
 GameObject:
   m_ObjectHideFlags: 0

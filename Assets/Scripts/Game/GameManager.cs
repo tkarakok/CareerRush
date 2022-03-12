@@ -132,9 +132,25 @@ public class GameManager : Singleton<GameManager>
         AddMoney(amount);
         for (int i = 0; i < CalculateMoney(amount); i++)
         {
-
             CollisionMoneyFunction(ObjectPoolManager.Instance.GetMoney().transform);
-            Debug.Log(GameManager.Instance.MoneyCounter);
+            Debug.Log(moneyCounter);
+        }
+    }
+
+    /// <summary>
+    /// this func calling in gate func for destroy money
+    /// </summary>
+    /// <param name="amount"></param>
+    void DestroyMoney(int amount)
+    {
+        MinusMoney(amount);
+        for (int i = 0; i < CalculateMoney(amount); i++)
+        {
+            moneyCounter--;
+            moneys[moneys.Count - 1].transform.SetParent(null);
+            moneys[moneys.Count - 1].SetActive(false);
+            moneys.Remove(moneys[moneys.Count - 1]);
+            Debug.Log(moneyCounter);
         }
     }
 
@@ -151,7 +167,7 @@ public class GameManager : Singleton<GameManager>
                 InstantiateNewMoney(amount);
                 break;
             case GateOperation.minus:
-                MinusMoney(amount);
+                DestroyMoney(amount);
                 break;
             case GateOperation.random:
                 if (RandomGateOperation() == GateOperation.plus)
@@ -160,7 +176,7 @@ public class GameManager : Singleton<GameManager>
                 }
                 else
                 {
-                    MinusMoney(amount);
+                    DestroyMoney(amount);
                 }
                 break;
             default:

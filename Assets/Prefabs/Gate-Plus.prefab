@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 639980782949774205}
   - component: {fileID: 7931539326199371144}
   - component: {fileID: 8762458474139484699}
+  - component: {fileID: 2707895163565040306}
   m_Layer: 0
   m_Name: Plus
-  m_TagString: Plus
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +98,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2707895163565040306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221416084936602210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00dfd7743223c245becf346654750fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gateOperation: 0
+  amount: 100
 --- !u!1 &7279538454731060352
 GameObject:
   m_ObjectHideFlags: 0
