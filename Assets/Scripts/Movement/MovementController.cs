@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : Singleton<MovementController>
@@ -8,7 +6,7 @@ public class MovementController : Singleton<MovementController>
     [SerializeField] private float _xSpeed = 25;
     [SerializeField] private float _forwardSpeed = 2;
     private float _lastTouchedX;
-    
+
     void Update()
     {
         // We check game state, if state in game we can move 
@@ -47,6 +45,8 @@ public class MovementController : Singleton<MovementController>
 
             Vector3 newPosition = new Vector3(_newX, transform.position.y, transform.position.z + _forwardSpeed * Time.deltaTime);
             transform.position = newPosition;
+
+            GameManager.Instance.MoveToHorizontalWithDelay(transform);
 
         }
     }
