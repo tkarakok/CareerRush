@@ -8,11 +8,13 @@ public class PlayerCollisionController : MonoBehaviour
         if (other.CompareTag("Money"))
         {
             other.tag = "Untagged";
+            Debug.Log(GameManager.Instance.MoneyCounter);
             GameManager.Instance.CollisionMoneyFunction(other.transform);
         }
         else if (other.CompareTag("Plus"))
         {
             other.tag = "Untagged";
+            
             GateController gateController = other.GetComponent<GateController>();
             GameManager.Instance.GateMoneyFunction(gateController.gateOperation,gateController.amount);
         }
