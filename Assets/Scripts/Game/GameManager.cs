@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+ public enum GateOperation {
+        plus,
+        minus,
+        random
+    }
+
 public class GameManager : Singleton<GameManager>
 {
 
@@ -15,7 +21,7 @@ public class GameManager : Singleton<GameManager>
     #region Private Fields
     private int moneyCounter; // total money size
     private int amountOfMoney; // total money amount
-    
+
     #endregion
 
     #region EnCapsulation
@@ -29,8 +35,11 @@ public class GameManager : Singleton<GameManager>
         amountOfMoney = 0;
     }
 
-
     #region Money Functions
+
+    public void InstantiateMoneyPrefab(int value){
+        
+    }
 
     /// <summary>
     /// we adding new amount if we collise in game money
@@ -86,4 +95,63 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
 
+    #region Gate Functions
+
+    /// <summary>
+    /// we calculating total money size for ex: amount :100 size = 100 / 10 = 10
+    /// </summary>
+    /// <param name="amount">we get gate's value</param>
+    /// <returns></returns>
+    public int CalculateMoney(int amount)
+    {
+        int number = amount / 10;
+        return number;
+    }
+
+    /// <summary>
+    /// if random value <=5 minus else plus 
+    /// </summary>
+    /// <returns> gate operation for random gate collision</returns>
+    public GateOperation RandomGateOperation(){
+        int randomOperation = Random.Range(0,10);
+        if (randomOperation <= 5)
+        {
+            return GateOperation.minus;
+        }
+        else
+        {
+            return GateOperation.minus;
+        }
+        
+    }
+
+/// <summary>
+/// calling collision gates
+/// </summary>
+/// <param name="gateOperation"> gate's value like plus minus random</param>
+/// <param name="amount"> gate amount value </param>
+    public void GateMoneyFunction(GateOperation gateOperation, int amount){
+        switch (gateOperation)
+        {
+            case GateOperation.plus:
+                AddMoney(amount);
+                break;
+            case GateOperation.minus:
+                MinusMoney(amount);
+                break;
+            case GateOperation.random:
+                if (RandomGateOperation() == GateOperation.plus)
+                {
+                    AddMoney(amount);
+                }else
+                {
+                    MinusMoney(amount);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    #endregion
 }
