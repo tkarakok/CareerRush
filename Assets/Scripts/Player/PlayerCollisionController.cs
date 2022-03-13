@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerCollisionController : MonoBehaviour
 {
@@ -22,6 +23,13 @@ public class PlayerCollisionController : MonoBehaviour
             GateController gateController = other.GetComponent<GateController>();
             GameManager.Instance.GateMoneyFunction(gateController.gateOperation,gateController.amount);
         }
+        else if (other.CompareTag("Finish"))
+        {
+            other.tag = "Untagged";
+            EventManager.Instance.EndGameEvent();
+            
+        }
+        
         
     }
 }
