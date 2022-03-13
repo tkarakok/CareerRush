@@ -21,10 +21,5 @@ public class PlayerAnimationController : Singleton<PlayerAnimationController>
 
      public void FinishAnimation(){
         animator.SetBool("Run", false);
-        animator.SetBool("Push", true);
-    }
-
-    public void EndFinishAnimation(){
-        animator.SetBool("Push",false);
     }
 }

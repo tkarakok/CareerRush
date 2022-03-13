@@ -7,6 +7,8 @@ public class MovementController : Singleton<MovementController>
     [SerializeField] private float _forwardSpeed = 2;
     private float _lastTouchedX;
 
+    public float ForwardSpeed { get => _forwardSpeed; set => _forwardSpeed = value; }
+
     void Update()
     {
         // We check game state, if state in game we can move 

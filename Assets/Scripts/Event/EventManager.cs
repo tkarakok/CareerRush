@@ -31,8 +31,9 @@ public class EventManager : Singleton<EventManager>
         GameOverEvent += UiManager.Instance.GameOver;
         #endregion
 
-        #region EndGame
-            
+        #region Finish
+        EndGameEvent += GameManager.Instance.Finish;
+        
         #endregion
 
         #region Money Event

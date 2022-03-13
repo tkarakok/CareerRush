@@ -16,24 +16,26 @@ public class GameManager : Singleton<GameManager>
     #region Public Fields
     public Vector3 offSetY;
     public Transform parent, stackPosition;
+    public Vector3 rotateFinish;
     [HideInInspector] public List<GameObject> moneys;
     #endregion
 
     #region Private Fields
-    private int moneyCounter; // total money size
-    private int amountOfMoney; // total money amount
+    private int _moneyCounter; // total money size
+    private int _amountOfMoney; // total money amount
+    private int _multiplier;
 
+    public int MoneyCounter { get => _moneyCounter; set => _moneyCounter = value; }
+    public int AmountOfMoney { get => _amountOfMoney; set => _amountOfMoney = value; }
+    public int Multiplier { get => _multiplier; set => _multiplier = value; }
     #endregion
 
-    #region EnCapsulation
-    public int AmountOfMoney { get => amountOfMoney; set => amountOfMoney = value; }
-    public int MoneyCounter { get => moneyCounter; set => moneyCounter = value; }
-    #endregion
+
 
     private void Start()
     {
-        moneyCounter = 0;
-        amountOfMoney = 0;
+        _moneyCounter = 0;
+        _amountOfMoney = 0;
     }
 
     #region Money Functions
@@ -44,7 +46,7 @@ public class GameManager : Singleton<GameManager>
     /// <param name="amount"> adding value </param>
     public void AddMoney(int amount)
     {
-        amountOfMoney += amount;
+        _amountOfMoney += amount;
         EventManager.Instance.MoneyEvent();
     }
 
@@ -55,8 +57,8 @@ public class GameManager : Singleton<GameManager>
     public void MinusMoney(int amount)
     {
 
-        amountOfMoney -= amount;
-        if (amountOfMoney < 0)
+        _amountOfMoney -= amount;
+        if (_amountOfMoney < 0)
         {
             EventManager.Instance.GameOverEvent();
         }
@@ -89,7 +91,7 @@ public class GameManager : Singleton<GameManager>
     public void CollisionMinusMoneyFunction()
     {
         MinusMoney(10);
-        moneyCounter--;
+        _moneyCounter--;
         moneys[moneys.Count - 1].transform.SetParent(null);
         moneys[moneys.Count - 1].SetActive(false);
         moneys.Remove(moneys[moneys.Count - 1]);
@@ -148,7 +150,7 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < CalculateMoney(amount); i++)
         {
             CollisionMoneyFunction(ObjectPoolManager.Instance.GetMoney().transform);
-            Debug.Log(moneyCounter);
+            
         }
     }
 
@@ -194,5 +196,26 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    #endregion
+
+    #region Finish Functions
+    public void Finish()
+    {
+        StartCoroutine(NullParent());
+    }
+    IEnumerator NullParent()
+    {
+        MovementController.Instance.ForwardSpeed = 0;
+        MovementController.Instance.transform.DOMoveX(0, 1);
+        yield return new WaitForSeconds(1);
+        PlayerAnimationController.Instance.FinishAnimation();
+        parent.DORotate(rotateFinish,1);
+        yield return new WaitForSeconds(1.5f);
+        
+    }
+    public void Bonus(){
+        StateManager.Instance.State = State.EndGame;
+        Debug.Log(Multiplier);
+    }
     #endregion
 }
